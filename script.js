@@ -1,86 +1,45 @@
-body {
-  font-family: 'Arial', sans-serif;
-  text-align: center;
-  background-color: black;
-  color: white;
+let souls = 1000;
+const currencyDisplay = document.getElementById("currency");
+const spinBtn = document.getElementById("spin-btn");
+const wheel = document.getElementById("wheel");
+const wonTowersList = document.getElementById("won-towers");
+
+const towers = [
+  "Tower 1", "Tower 2", "Tower 3", "Tower 4", "Tower 5",
+  "Tower 6", "Tower 7", "Tower 8", "Tower 9", "Tower 10"
+];
+
+function updateCurrency() {
+  currencyDisplay.textContent = `Souls: ${souls}`;
 }
 
-h1 {
-  margin-top: 20px;
-  font-size: 2em;
+function addWonTower(towerName) {
+  const li = document.createElement("li");
+  li.textContent = towerName;
+  wonTowersList.appendChild(li);
 }
 
-.game-container {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 20px;
-  margin-top: 20px;
+function spinWheel() {
+  if (souls < 1000) {
+    alert("Not enough souls!");
+    return;
+  }
+
+  souls -= 1000;
+  updateCurrency();
+
+  const randomDegree = Math.floor(Math.random() * 360) + 3600; 
+  wheel.style.transition = "transform 3s ease-out";
+  wheel.style.transform = `rotate(${randomDegree}deg)`;
+
+  setTimeout(() => {
+    const selectedSegment = Math.floor((randomDegree % 360) / (360 / 10));
+    const wonTower = towers[selectedSegment];
+    addWonTower(wonTower);
+    alert(`You won: ${wonTower}`);
+  }, 3000);
 }
 
-.inventory {
-  width: 200px;
-  border: 2px solid white;
-  padding: 10px;
-}
+spinBtn.addEventListener("click", spinWheel);
 
-.wheel-section {
-  text-align: center;
-}
-
-#currency {
-  font-size: 1.5em;
-  margin-bottom: 20px;
-}
-
-.wheel-container {
-  position: relative;
-  width: 300px;
-  height: 300px;
-  margin: auto;
-}
-
-.wheel {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  border: 5px solid white;
-  background: conic-gradient(
-    red 0deg 36deg,
-    blue 36deg 72deg,
-    green 72deg 108deg,
-    yellow 108deg 144deg,
-    purple 144deg 180deg,
-    orange 180deg 216deg,
-    cyan 216deg 252deg,
-    pink 252deg 288deg,
-    lime 288deg 324deg,
-    violet 324deg 360deg
-  );
-  transition: transform 3s ease-out;
-}
-
-.pointer {
-  position: absolute;
-  top: -10px;
-  left: 50%;
-  width: 20px;
-  height: 20px;
-  background: red;
-  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-  transform: translateX(-50%);
-}
-
-button {
-  margin-top: 20px;
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-
-button:disabled {
-  background-color: gray;
-}
+updateCurrency();
