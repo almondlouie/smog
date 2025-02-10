@@ -3,30 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Game Wheel</title>
+  <title>Spin the Wheel</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="currency">Souls: 0</div>
-  
+
+  <h1>Spin the Wheel!</h1>
+  <div id="currency">Souls: 1000</div>
+
   <div class="wheel-container">
     <div class="wheel">
-      <div class="tower" style="--i: 0;">
-        <img src="https://via.placeholder.com/50" alt="Tower 1">
-        <span class="tower-name">Tower 1</span>
-      </div>
-      <div class="tower" style="--i: 1;">
-        <img src="https://via.placeholder.com/50" alt="Tower 2">
-        <span class="tower-name">Tower 2</span>
-      </div>
-      <div class="tower" style="--i: 2;">
-        <img src="https://via.placeholder.com/50" alt="Tower 3">
-        <span class="tower-name">Tower 3</span>
-      </div>
+      <!-- 10 Segments for 10 Towers -->
+      <div class="segment" style="--i:0; background-color: #FF5733;"><img src="https://via.placeholder.com/50" alt="Tower 1"><span>Tower 1</span></div>
+      <div class="segment" style="--i:1; background-color: #FFC300;"><img src="https://via.placeholder.com/50" alt="Tower 2"><span>Tower 2</span></div>
+      <div class="segment" style="--i:2; background-color: #33FF57;"><img src="https://via.placeholder.com/50" alt="Tower 3"><span>Tower 3</span></div>
+      <div class="segment" style="--i:3; background-color: #33A7FF;"><img src="https://via.placeholder.com/50" alt="Tower 4"><span>Tower 4</span></div>
+      <div class="segment" style="--i:4; background-color: #8D33FF;"><img src="https://via.placeholder.com/50" alt="Tower 5"><span>Tower 5</span></div>
+      <div class="segment" style="--i:5; background-color: #FF33A8;"><img src="https://via.placeholder.com/50" alt="Tower 6"><span>Tower 6</span></div>
+      <div class="segment" style="--i:6; background-color: #A833FF;"><img src="https://via.placeholder.com/50" alt="Tower 7"><span>Tower 7</span></div>
+      <div class="segment" style="--i:7; background-color: #33FFD5;"><img src="https://via.placeholder.com/50" alt="Tower 8"><span>Tower 8</span></div>
+      <div class="segment" style="--i:8; background-color: #FF8C33;"><img src="https://via.placeholder.com/50" alt="Tower 9"><span>Tower 9</span></div>
+      <div class="segment" style="--i:9; background-color: #57FF33;"><img src="https://via.placeholder.com/50" alt="Tower 10"><span>Tower 10</span></div>
     </div>
+    <div class="pointer"></div>
   </div>
 
-  <button id="spin-btn">Spin Wheel</button>
+  <button id="spin-btn">Spin Wheel (Cost: 1,000 Souls)</button>
 
   <script src="script.js"></script>
 </body>
