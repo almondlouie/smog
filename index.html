@@ -1,277 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smog Shop</title>
-    <style>
-        /* Base styles */
-        body {
-            margin: 0;
-            font-family: 'Arial', sans-serif;
-            background-color: #121212;
-            color: #e0e0e0;
-        }
-
-        /* Header */
-        header {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            background-color: #1f1f1f;
-            border-bottom: 1px solid #333;
-        }
-
-        header img {
-            width: 50px;
-            height: 50px;
-            margin-right: 15px;
-            border-radius: 50%;
-        }
-
-        header h1 {
-            font-size: 28px;
-            margin: 0;
-            color: #ffffff;
-        }
-
-        /* Content container */
-        .container {
-            padding: 20px;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        /* Product cards */
-        .card {
-            background-color: #1e1e1e;
-            border-radius: 8px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
-            overflow: hidden;
-            text-align: center;
-            transition: transform 0.2s ease;
-        }
-
-        .card:hover {
-            transform: scale(1.05);
-        }
-
-        .card img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-        }
-
-        .card h2 {
-            font-size: 18px;
-            margin: 15px 0;
-            color: #ffffff;
-        }
-
-        .card button {
-            display: block;
-            width: 90%;
-            margin: 10px auto 15px;
-            padding: 10px;
-            font-size: 16px;
-            background-color: #5c2e91;
-            border: none;
-            color: white;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-
-        .card button:hover {
-            background-color: #7e3db9;
-            transform: scale(1.05);
-        }
-
-        /* Pop-up UI */
-        .popup {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 90%;
-            max-width: 400px;
-            background-color: #1e1e1e;
-            border: 1px solid #333;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
-            text-align: center;
-            padding: 20px;
-            display: none;
-            z-index: 10;
-        }
-
-        .popup h2 {
-            margin-bottom: 10px;
-        }
-
-        .popup .payment-methods {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin: 15px 0;
-        }
-
-        .popup .payment-methods img {
-            width: 30px;
-            height: 30px;
-        }
-
-        .popup button {
-            margin: 10px;
-            padding: 10px 20px;
-            background-color: #5c2e91;
-            border: none;
-            color: white;
-            font-size: 16px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-
-        .popup button:hover {
-            background-color: #7e3db9;
-            transform: scale(1.05);
-        }
-
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            display: none;
-            z-index: 9;
-        }
-
-        /* Footer */
-        footer {
-            margin-top: 20px;
-            padding: 10px;
-            text-align: center;
-            background-color: #1f1f1f;
-            border-top: 1px solid #333;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Wheel</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <header>
-        <img src="https://cdn.discordapp.com/icons/1239733558772502528/69d6d55d02e5fad07cee96353da6771b.webp?size=128" alt="Smog Shop Logo">
-        <h1>Smog Shop</h1>
-    </header>
-
-    <div class="container">
-        <div class="grid">
-            <!-- Placeholder Products -->
-            <div class="card">
-                <img src="https://media.discordapp.net/attachments/1055985569412431942/1327783573713059920/standard_3.gif?ex=67845250&is=678300d0&hm=98d828c957f632a4871bfd59f0d6929ab006849dfe47cfd5dce6cdbd7db6c94e&=&width=850&height=300" alt="Product">
-                <h2>Placeholder Product</h2>
-                <button onclick="showPopup('Placeholder Product', '$5.00')">$5.00</button>
-            </div>
-
-            <!-- More placeholder products copied -->
-            <div class="card">
-                <img src="https://media.discordapp.net/attachments/1055985569412431942/1327783573713059920/standard_3.gif?ex=67845250&is=678300d0&hm=98d828c957f632a4871bfd59f0d6929ab006849dfe47cfd5dce6cdbd7db6c94e&=&width=850&height=300" alt="Product">
-                <h2>Placeholder Product</h2>
-                <button onclick="showPopup('Placeholder Product', '$5.00')">$5.00</button>
-            </div>
-
-            <div class="card">
-                <img src="https://media.discordapp.net/attachments/1055985569412431942/1327783573713059920/standard_3.gif?ex=67845250&is=678300d0&hm=98d828c957f632a4871bfd59f0d6929ab006849dfe47cfd5dce6cdbd7db6c94e&=&width=850&height=300" alt="Product">
-                <h2>Placeholder Product</h2>
-                <button onclick="showPopup('Placeholder Product', '$5.00')">$5.00</button>
-            </div>
-
-            <div class="card">
-                <img src="https://media.discordapp.net/attachments/1055985569412431942/1327783573713059920/standard_3.gif?ex=67845250&is=678300d0&hm=98d828c957f632a4871bfd59f0d6929ab006849dfe47cfd5dce6cdbd7db6c94e&=&width=850&height=300" alt="Product">
-                <h2>Placeholder Product</h2>
-                <button onclick="showPopup('Placeholder Product', '$5.00')">$5.00</button>
-            </div>
-
-            <div class="card">
-                <img src="https://media.discordapp.net/attachments/1055985569412431942/1327783573713059920/standard_3.gif?ex=67845250&is=678300d0&hm=98d828c957f632a4871bfd59f0d6929ab006849dfe47cfd5dce6cdbd7db6c94e&=&width=850&height=300" alt="Product">
-                <h2>Placeholder Product</h2>
-                <button onclick="showPopup('Placeholder Product', '$5.00')">$5.00</button>
-            </div>
-
-            <!-- More placeholder products -->
-            <div class="card">
-                <img src="https://media.discordapp.net/attachments/1055985569412431942/1327783573713059920/standard_3.gif?ex=67845250&is=678300d0&hm=98d828c957f632a4871bfd59f0d6929ab006849dfe47cfd5dce6cdbd7db6c94e&=&width=850&height=300" alt="Product">
-                <h2>Placeholder Product</h2>
-                <button onclick="showPopup('Placeholder Product', '$5.00')">$5.00</button>
-            </div>
-
-            <div class="card">
-                <img src="https://media.discordapp.net/attachments/1055985569412431942/1327783573713059920/standard_3.gif?ex=67845250&is=678300d0&hm=98d828c957f632a4871bfd59f0d6929ab006849dfe47cfd5dce6cdbd7db6c94e&=&width=850&height=300" alt="Product">
-                <h2>Placeholder Product</h2>
-                <button onclick="showPopup('Placeholder Product', '$5.00')">$5.00</button>
-            </div>
-
-            <div class="card">
-                <img src="https://media.discordapp.net/attachments/1055985569412431942/1327783573713059920/standard_3.gif?ex=67845250&is=678300d0&hm=98d828c957f632a4871bfd59f0d6929ab006849dfe47cfd5dce6cdbd7db6c94e&=&width=850&height=300" alt="Product">
-                <h2>Placeholder Product</h2>
-                <button onclick="showPopup('Placeholder Product', '$5.00')">$5.00</button>
-            </div>
-
-            <div class="card">
-                <img src="https://media.discordapp.net/attachments/1055985569412431942/1327783573713059920/standard_3.gif?ex=67845250&is=678300d0&hm=98d828c957f632a4871bfd59f0d6929ab006849dfe47cfd5dce6cdbd7db6c94e&=&width=850&height=300" alt="Product">
-                <h2>Placeholder Product</h2>
-                <button onclick="showPopup('Placeholder Product', '$5.00')">$5.00</button>
-            </div>
-
-        </div>
+  <div id="currency">Souls: 0</div>
+  
+  <div class="wheel-container">
+    <div class="wheel">
+      <div class="tower" style="--i: 0;">
+        <img src="https://via.placeholder.com/50" alt="Tower 1">
+        <span class="tower-name">Tower 1</span>
+      </div>
+      <div class="tower" style="--i: 1;">
+        <img src="https://via.placeholder.com/50" alt="Tower 2">
+        <span class="tower-name">Tower 2</span>
+      </div>
+      <div class="tower" style="--i: 2;">
+        <img src="https://via.placeholder.com/50" alt="Tower 3">
+        <span class="tower-name">Tower 3</span>
+      </div>
     </div>
+  </div>
 
-    <footer>
-        &copy; 2025 Smog Shop. All Rights Reserved.
-    </footer>
+  <button id="spin-btn">Spin Wheel</button>
 
-    <!-- Pop-up UI -->
-    <div class="overlay" onclick="closePopup()"></div>
-    <div class="popup">
-        <h2 id="popup-title"></h2>
-        <p id="popup-price"></p>
-        <div class="payment-methods">
-            <img src="https://cdn.discordapp.com/emojis/1267220378648969310.webp?size=128" alt="CashApp">
-            <img src="https://cdn.discordapp.com/emojis/1255812677876580415.webp?size=128" alt="PayPal">
-            <img src="https://cdn.discordapp.com/emojis/1284948988797391020.webp?size=128" alt="Crypto">
-        </div>
-        <button onclick="redirectToRoblox()">Buy</button>
-        <button onclick="closePopup()">Close</button>
-    </div>
-
-    <script>
-        function showPopup(title, price) {
-            document.getElementById('popup-title').textContent = title;
-            document.getElementById('popup-price').textContent = price;
-            document.querySelector('.popup').style.display = 'block';
-            document.querySelector('.overlay').style.display = 'block';
-        }
-
-        function closePopup() {
-            document.querySelector('.popup').style.display = 'none';
-            document.querySelector('.overlay').style.display = 'none';
-        }
-
-        function redirectToRoblox() {
-            window.location.href = "https://discord.gg/ntAFKkagRA";
-        }
-    </script>
+  <script src="script.js"></script>
 </body>
-
 </html>
